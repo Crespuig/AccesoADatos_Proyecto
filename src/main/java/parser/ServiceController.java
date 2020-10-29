@@ -6,7 +6,7 @@
 package parser;
 
 import model.BasicData;
-import model.Multimedia;
+import model.Media;
 import model.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -47,7 +47,7 @@ public class ServiceController {
     protected static Service leerService(Element elemService, Element elemBasicData, Element elemMultimedia) {
         Service service = new Service();
         BasicData basicData = new BasicData();
-        Multimedia multimedia = new Multimedia();
+        Media media = new Media();
         
         //SERVICE
         String basicD = getValorEtiqueta(ET_BASICDATA, elemService);
@@ -61,11 +61,9 @@ public class ServiceController {
         String title = getValorEtiqueta(ET_TITLE, elemBasicData);
         basicData.setTitle(title);
         
-        //MULTIMEDIA
-        String media = getValorEtiqueta(ET_MEDIA, elemMultimedia);
-        multimedia.setMedia(media);
-
         //MEDIA
+        String url = getValorEtiqueta(ET_URL, elemMultimedia);
+        media.setUrl(url);
         
         
         /*String titulo = getValorEtiqueta(ET_TITULO, elemLibro);

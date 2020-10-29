@@ -5,25 +5,29 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 
 public class Service {
+    private int id;
     private String basicData;
-    private String multimedia;
-
+    private ArrayList<Media> multimedia;
+    
     public Service() {
     }
 
-    public Service(String basicData, String multimedia) {
+    public Service(int id, String basicData, ArrayList<Media> multimedia) {
+        this.id = id;
         this.basicData = basicData;
         this.multimedia = multimedia;
     }
 
-    public String getMultimedia() {
-        return multimedia;
+    public int getId() {
+        return id;
     }
 
-    public void setMultimedia(String multimedia) {
-        this.multimedia = multimedia;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBasicData() {
@@ -34,10 +38,20 @@ public class Service {
         this.basicData = basicData;
     }
 
+    public ArrayList<Media> getMultimedia() {
+        return multimedia;
+    }
+
+    public void setMultimedia(ArrayList<Media> multimedia) {
+        this.multimedia = multimedia;
+    }
+
     @Override
     public String toString() {
-        return "Service{" + "basicData=" + basicData + ", multimedia=" + multimedia + '}';
+        return "Service{" + "id=" + id + ", basicData=" + basicData + ", multimedia=" + multimedia + '}';
     }
+
+    
     
     
 }
