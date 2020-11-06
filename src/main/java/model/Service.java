@@ -9,49 +9,43 @@ import java.util.ArrayList;
 
 
 public class Service {
-    private int id;
-    private String basicData;
-    private ArrayList<Media> multimedia;
-    
-    public Service() {
-    }
+    private BasicData basicData;
+    private String multimedia;
 
-    public Service(int id, String basicData, ArrayList<Media> multimedia) {
-        this.id = id;
+    public Service(BasicData basicData/*, String multimedia*/) {
         this.basicData = basicData;
         this.multimedia = multimedia;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getBasicData() {
+    public BasicData getBasicData() {
         return basicData;
     }
 
-    public void setBasicData(String basicData) {
+    public void setBasicData(BasicData basicData) {
         this.basicData = basicData;
     }
 
-    public ArrayList<Media> getMultimedia() {
+    public String getMultimedia() {
         return multimedia;
     }
 
-    public void setMultimedia(ArrayList<Media> multimedia) {
+    public void setMultimedia(String multimedia) {
         this.multimedia = multimedia;
     }
 
     @Override
     public String toString() {
-        return "Service{" + "id=" + id + ", basicData=" + basicData + ", multimedia=" + multimedia + '}';
+        return "Service: " + "\n\tBasicData: " + basicData + "\n\tMultimedia: " + multimedia;
     }
+    
+
+     
+    
+    
+    
 
     
     
     
+     
 }

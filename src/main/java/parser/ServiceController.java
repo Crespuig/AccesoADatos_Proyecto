@@ -5,12 +5,16 @@
  */
 package parser;
 
+import java.util.ArrayList;
 import model.BasicData;
 import model.Media;
+import model.Multimedia;
 import model.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import static parser.ServiceController.leerMedia;
 
 /**
  *
@@ -21,9 +25,9 @@ public class ServiceController {
     static final String ET_SERVICE = "service";
     
     static final String ET_BASICDATA = "basicData";
-    static final String ET_NAME = "name";
+    static final String ET_LANGUAGE = "language";
     static final String ET_PHONE = "phone";
-    static final String ET_TITLE = "title";
+    static final String ET_WEB = "web";
     
     static final String ET_MULTIMEDIA = "multimedia";
     static final String ET_MEDIA = "media";
@@ -44,63 +48,93 @@ public class ServiceController {
         return (Element) element.getElementsByTagName(etiqueta).item(0);
     }
     
-    protected static Service leerService(Element elemService, Element elemBasicData, Element elemMultimedia) {
-        Service service = new Service();
-        BasicData basicData = new BasicData();
-        Media media = new Media();
+    protected static Service leerService(Element elemenService) {
+        Service service;
+   
+        String valorService;
+        String valorBasicData;
+        String valorMultimedia;
+        String valorFecha;
+      
+        Element elemService;      
+        Element elemBasicData;
+        Element elemMultimedia;
+           
+        /*valorService = getValorEtiqueta(ET_SERVICE, elemenService);
+        elemService = getElementEtiqueta(ET_SERVICE, elemenService);
+        valorFecha = elemService.getAttribute(ATR_FECHAACTUALIZACION);*/
         
-        //SERVICE
-        String basicD = getValorEtiqueta(ET_BASICDATA, elemService);
-        String multi = getValorEtiqueta(ET_MULTIMEDIA, elemService);
+        valorBasicData = getValorEtiqueta(ET_BASICDATA, elemenService);
+        elemBasicData = getElementEtiqueta(ET_BASICDATA, elemenService);
         
-        //BASICDATA
-        String name = getValorEtiqueta(ET_NAME, elemBasicData);
-        basicData.setName(name);
-        String phone = getValorEtiqueta(ET_PHONE, elemBasicData);
-        basicData.setPhone(phone);
-        String title = getValorEtiqueta(ET_TITLE, elemBasicData);
-        basicData.setTitle(title);
-        
-        //MEDIA
-        String url = getValorEtiqueta(ET_URL, elemMultimedia);
-        media.setUrl(url);
-        
-        
-        /*String titulo = getValorEtiqueta(ET_TITULO, elemLibro);
-        libro.setTitulo(titulo);
-        String autores = getValorEtiqueta(ET_AUTORES, elemLibro);
-        libro.setAutor(autores);
-        String autor = getValorEtiqueta(ET_AUTOR, elemLibro);
-        libro.setAutor(autor);
-        float precio = Float.parseFloat(getValorEtiqueta(ET_PRECIO, elemLibro));
-        libro.setPrecio(precio);
-        String categoria = getValorEtiqueta(ET_CATEGORIA, elemLibro);
-        libro.setCategoria(categoria);
-        String cover = getValorEtiqueta(ET_COVER, elemLibro);
-        libro.setCover(cover);*/
+        /*valorMultimedia = getValorEtiqueta(ET_MULTIMEDIA, elemenService);
+        elemMultimedia = getElementEtiqueta(ET_MULTIMEDIA, elemenService);*/
 
+        service = new Service(leerBasicData(elemBasicData)/*, valorMultimedia*/);
+        
         return service;
         
     }
 
-    static void escribirService(Service service, Element elemService, Document doc) {
-        /*Element elemLibro = doc.createElement(ET_LIBRO);
+    protected static BasicData leerBasicData(Element elemenService){
+        BasicData basicData;
         
-        Element elemTitulo = doc.createElement(ET_TITULO);
-        elemTitulo.appendChild(doc.createTextNode(String.valueOf(libro.getTitulo())));
-        elemLibro.appendChild(elemTitulo);
-
-        Element elemAutores = doc.createElement(ET_AUTORES);
-        Element elemAutor = doc.createElement(ET_AUTOR);
-        elemAutores.appendChild(elemAutor);
-        elemAutor.appendChild(doc.createTextNode(String.valueOf(libro.getAutor())));
-        elemLibro.appendChild(elemAutores);
-
-        Element elemPrecio = doc.createElement(ET_PRECIO);
-        elemPrecio.appendChild(doc.createTextNode(String.valueOf(libro.getPrecio())));
-        elemLibro.appendChild(elemPrecio);
+        String valorLanguage;
+        String valorPhone;
+        String valorWeb;
         
-        elemBookstore.appendChild(elemLibro);*/
+        Element elemLanguage;
+        Element elemPhone;
+        Element elemWeb;
+        
+        valorLanguage = getValorEtiqueta(ET_LANGUAGE, elemenService);
+        elemLanguage = getElementEtiqueta(ET_LANGUAGE, elemenService);
+        
+        valorPhone = getValorEtiqueta(ET_PHONE, elemenService);
+        elemPhone = getElementEtiqueta(ET_PHONE, elemenService);
+                       
+        valorWeb = getValorEtiqueta(ET_WEB, elemenService);
+        elemWeb = getElementEtiqueta(ET_WEB, elemenService);
+        
+        basicData = new BasicData(valorLanguage, valorPhone, valorWeb);
+        
+        return basicData;
+    }
+    
+    protected static Multimedia leerMultimedia(Element elemenMultimedia){
+        Multimedia multimedia;
+        
+        String valorMedia;
+        String valorType;
+        
+        Element elemMedia;
+        
+        NodeList medias;
+        
+        valorMedia = getValorEtiqueta(ET_MEDIA, elemenMultimedia);
+        elemMedia = getElementEtiqueta(ET_MEDIA, elemenMultimedia);
+        valorType = elemMedia.getAttribute(ATR_TYPE);
+        medias = elemMedia.getChildNodes();
+       
+        multimedia = new Multimedia(leerMedia (medias));
+        
+        return multimedia;
+    }
+    
+    protected static ArrayList<Media> leerMedia(NodeList medias){
+        ArrayList<Media> listMedia = new ArrayList();
+        Media media;
+        String url;
+        
+        for (int i = 0; i < medias.getLength(); i++) {
+            if (medias.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                url = getValorEtiqueta(ET_URL, (Element) medias.item(i));
+
+                media = new Media(url);
+                listMedia.add(media);
+            }
+        }
+        return listMedia;
     }
 
 }

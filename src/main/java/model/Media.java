@@ -5,25 +5,20 @@
  */
 package model;
 
+/**
+ *
+ * @author HECTOR
+ */
 public class Media {
-    
-    private String tipo;
     private String url;
+    private String type;
 
     public Media() {
+        
     }
 
-    public Media(String tipo, String url) {
-        this.tipo = tipo;
+    public Media(String url) {
         this.url = url;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public String getUrl() {
@@ -34,9 +29,17 @@ public class Media {
         this.url = url;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
-        return "Media{" + "tipo=" + tipo + ", url=" + url + '}';
+        return "Media{" + "url=" + url + ", type=" + type + '}';
     }
     
     

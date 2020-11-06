@@ -12,6 +12,10 @@ public class ServiceList extends ArrayList<Service>{
     public ArrayList<Service> getService() {
         return this;
     }
+    
+    /*public ArrayList<Multimedia> getMultimedia(){
+        return this;
+    }*/
 
     @Override
     public String toString() {
@@ -23,4 +27,15 @@ public class ServiceList extends ArrayList<Service>{
         return result;
 
     }
+    
+    /*@Override
+    public String toString() {
+        String result = "+";
+        for (int i = 0; i < this.getMultimedia().size(); i++) {
+            result += "\n" + this.getMultimedia().get(i);
+        }
+
+        return result;
+
+    }*/
 }

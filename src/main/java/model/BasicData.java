@@ -5,28 +5,30 @@
  */
 package model;
 
-
+/**
+ *
+ * @author HECTOR
+ */
 public class BasicData {
-    
-    private String name;
+    private String language;
     private String phone;
-    private String title;
+    private String web;
 
     public BasicData() {
     }
 
-    public BasicData(String name, String phone, String title) {
-        this.name = name;
+    public BasicData(String language, String phone, String web) {
+        this.language = language;
         this.phone = phone;
-        this.title = title;
+        this.web = web;
     }
 
     public String getName() {
-        return name;
+        return language;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.language = name;
     }
 
     public String getPhone() {
@@ -38,18 +40,17 @@ public class BasicData {
     }
 
     public String getTitle() {
-        return title;
+        return web;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.web = web;
     }
 
     @Override
     public String toString() {
-        return "BasicData{" + "name=" + name + ", phone=" + phone + ", title=" + title + '}';
+        return "\n\t\tLanguage: " + language + "\n\t\tPhone: " + phone + "\n\t\tWeb: " + web;
     }
-    
     
     
 }
