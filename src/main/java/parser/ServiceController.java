@@ -67,10 +67,10 @@ public class ServiceController {
         valorBasicData = getValorEtiqueta(ET_BASICDATA, elemenService);
         elemBasicData = getElementEtiqueta(ET_BASICDATA, elemenService);
         
-        /*valorMultimedia = getValorEtiqueta(ET_MULTIMEDIA, elemenService);
-        elemMultimedia = getElementEtiqueta(ET_MULTIMEDIA, elemenService);*/
+        valorMultimedia = getValorEtiqueta(ET_MULTIMEDIA, elemenService);
+        elemMultimedia = getElementEtiqueta(ET_MULTIMEDIA, elemenService);
 
-        service = new Service(leerBasicData(elemBasicData)/*, valorMultimedia*/);
+        service = new Service(leerBasicData(elemBasicData), leerMultimedia(elemMultimedia));
         
         return service;
         

@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class Service {
     private BasicData basicData;
-    private String multimedia;
+    private Multimedia multimedia;
 
-    public Service(BasicData basicData/*, String multimedia*/) {
+    public Service(BasicData basicData, Multimedia multimedia) {
         this.basicData = basicData;
         this.multimedia = multimedia;
     }
@@ -25,11 +25,11 @@ public class Service {
         this.basicData = basicData;
     }
 
-    public String getMultimedia() {
+    public Multimedia getMultimedia() {
         return multimedia;
     }
 
-    public void setMultimedia(String multimedia) {
+    public void setMultimedia(Multimedia multimedia) {
         this.multimedia = multimedia;
     }
 

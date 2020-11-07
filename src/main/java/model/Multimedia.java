@@ -30,7 +30,7 @@ public class Multimedia {
 
     @Override
     public String toString() {
-        return "Multimedia{" + "media=" + media + '}';
+        return "Multimedia: " + "\n\tMedia: " + media + '}';
     }
     
     

@@ -28,15 +28,15 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import vista.App;
 
-
 public class ServiceListController {
+
     private File ficXML = null;
     private Document doc = null;
     private ServiceList serviceList;
-    
+
     final String ET_SERVICELIST = "servicelist";
-    
-     public ServiceListController() {
+
+    public ServiceListController() {
         this.serviceList = new ServiceList();
     }
 
@@ -47,9 +47,9 @@ public class ServiceListController {
 
     public ServiceListController(File fichXML, ServiceList negocio) {
         this.ficXML = fichXML;
-        this.serviceList = negocio;        
+        this.serviceList = negocio;
     }
-    
+
     public void recuperarXML() throws SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
@@ -72,10 +72,11 @@ public class ServiceListController {
             if (service.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 this.serviceList.add(ServiceController.leerService((Element) service.item(i)));
             }
+
         }
         return this.serviceList;
     }
-    
+
     public Document iniDoc() throws ParserConfigurationException {
         Document doc = null;
         doc = (Document) DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
@@ -91,7 +92,6 @@ public class ServiceListController {
             ServiceController.escribirService(proveedor, elemNegocio, this.doc);
         }
     }*/
-
     public void guardarXML() throws TransformerConfigurationException, TransformerException {
         Transformer trans = TransformerFactory.newInstance().newTransformer();
         trans.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -99,6 +99,5 @@ public class ServiceListController {
         DOMSource source = new DOMSource(this.doc);
         trans.transform(source, result);
     }
-    
-    
+
 }

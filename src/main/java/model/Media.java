@@ -39,7 +39,7 @@ public class Media {
 
     @Override
     public String toString() {
-        return "Media{" + "url=" + url + ", type=" + type + '}';
+        return "Media: " + "\n\tUrl: " + url;
     }
     
     
