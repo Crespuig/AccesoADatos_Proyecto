@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Temps de generació: 19-11-2020 a les 10:26:13
--- Versió del servidor: 10.4.11-MariaDB
--- Versió de PHP: 7.4.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 25-11-2020 a las 20:40:33
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de dades: `proyectodb`
+-- Base de datos: `proyectodb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `basicdata`
+-- Estructura de tabla para la tabla `basicdata`
 --
 
 CREATE TABLE `basicdata` (
@@ -38,7 +38,7 @@ CREATE TABLE `basicdata` (
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `multimedia`
+-- Estructura de tabla para la tabla `multimedia`
 --
 
 CREATE TABLE `multimedia` (
@@ -52,7 +52,7 @@ CREATE TABLE `multimedia` (
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `service`
+-- Estructura de tabla para la tabla `service`
 --
 
 CREATE TABLE `service` (
@@ -60,18 +60,19 @@ CREATE TABLE `service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Índexs per a les taules bolcades
+-- Índices para tablas volcadas
 --
 
 --
--- Índexs per a la taula `basicdata`
+-- Indices de la tabla `basicdata`
 --
 ALTER TABLE `basicdata`
   ADD PRIMARY KEY (`idBasicData`),
-  ADD UNIQUE KEY `id` (`idBasicData`);
+  ADD UNIQUE KEY `id` (`idBasicData`),
+  ADD KEY `F_idService` (`idService`);
 
 --
--- Índexs per a la taula `multimedia`
+-- Indices de la tabla `multimedia`
 --
 ALTER TABLE `multimedia`
   ADD PRIMARY KEY (`idMultimedia`),
@@ -79,40 +80,46 @@ ALTER TABLE `multimedia`
   ADD KEY `FK_idService` (`idService`);
 
 --
--- Índexs per a la taula `service`
+-- Indices de la tabla `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`idService`),
   ADD UNIQUE KEY `id` (`idService`);
 
 --
--- AUTO_INCREMENT per les taules bolcades
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT per la taula `basicdata`
+-- AUTO_INCREMENT de la tabla `basicdata`
 --
 ALTER TABLE `basicdata`
   MODIFY `idBasicData` int(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la taula `multimedia`
+-- AUTO_INCREMENT de la tabla `multimedia`
 --
 ALTER TABLE `multimedia`
   MODIFY `idMultimedia` int(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la taula `service`
+-- AUTO_INCREMENT de la tabla `service`
 --
 ALTER TABLE `service`
   MODIFY `idService` int(20) NOT NULL AUTO_INCREMENT;
 
 --
--- Restriccions per a les taules bolcades
+-- Restricciones para tablas volcadas
 --
 
 --
--- Restriccions per a la taula `multimedia`
+-- Filtros para la tabla `basicdata`
+--
+ALTER TABLE `basicdata`
+  ADD CONSTRAINT `F_idService` FOREIGN KEY (`idService`) REFERENCES `service` (`idService`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `multimedia`
 --
 ALTER TABLE `multimedia`
   ADD CONSTRAINT `FK_idService` FOREIGN KEY (`idService`) REFERENCES `service` (`idService`) ON UPDATE CASCADE;
