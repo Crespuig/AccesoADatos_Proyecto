@@ -39,7 +39,6 @@ public class BasicDataDAO {
             stmt.setString(2, basicData.getPhone());
             stmt.setString(3, basicData.getWeb());
             
-
             return stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -51,7 +50,7 @@ public class BasicDataDAO {
         }
     }
 
-    public int actualiza() throws SQLException {
+    public int actualizaBasicData() throws SQLException {
         PreparedStatement stmt = null;
 
         stmt = con.prepareStatement("UPDATE basicdata SET language=?, phone=? "
@@ -64,7 +63,7 @@ public class BasicDataDAO {
 
     }
 
-    public int elimina() throws SQLException {
+    public int eliminaBasicData() throws SQLException {
         PreparedStatement stmt = null;
         stmt = con.prepareStatement("DELETE FROM basicdata WHERE idBasicData=?");
         stmt.setInt(1, basicData.getIdBasicData());
@@ -98,7 +97,7 @@ public class BasicDataDAO {
 
     }
 
-    public String recuperaClientes() throws SQLException, Exception {
+    public String recuperaBasicData() throws SQLException, Exception {
         String lista = "Lista de BasicData: \n-----------------\n";
         PreparedStatement stmt = null;
         ResultSet rs = null;

@@ -100,4 +100,30 @@ public class ServiceListController {
         trans.transform(source, result);
     }
 
+    public File getFicXML() {
+        return ficXML;
+    }
+
+    public void setFicXML(File ficXML) {
+        this.ficXML = ficXML;
+    }
+
+    public Document getDoc() {
+        return doc;
+    }
+
+    public void setDoc(Document doc) {
+        this.doc = doc;
+    }
+
+    public ServiceList getServiceList() {
+        return serviceList;
+    }
+
+    public void setServiceList(ServiceList serviceList) {
+        this.serviceList = serviceList;
+    }
+    
+    
+
 }

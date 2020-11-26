@@ -49,19 +49,19 @@ public class BasicData {
         this.web = web;
     }
 
-    public int insertaClienteBBDD(Connection con) throws SQLException, Exception {
-        BasicDataDAO cliDao = new BasicDataDAO(con, this);
-        return cliDao.insertaBasicData();
+    public int insertaBasicDataBBDD(Connection con) throws SQLException, Exception {
+        BasicDataDAO bdDao = new BasicDataDAO(con, this);
+        return bdDao.insertaBasicData();
     }
 
-    public int eliminarClienteBBDD(Connection con) throws SQLException, Exception {
-        BasicDataDAO cliDAO = new BasicDataDAO(con, this);
-        return cliDAO.elimina();
+    public int eliminarBasicDataBBDD(Connection con) throws SQLException, Exception {
+        BasicDataDAO bdDao = new BasicDataDAO(con, this);
+        return bdDao.eliminaBasicData();
     }
 
-    public int actualizarClienteBBDD(Connection con) throws SQLException, Exception {
-        BasicDataDAO cliDAO = new BasicDataDAO(con, this);
-        return cliDAO.actualiza();
+    public int actualizarBasicDataBBDD(Connection con) throws SQLException, Exception {
+        BasicDataDAO bdDao = new BasicDataDAO(con, this);
+        return bdDao.actualizaBasicData();
     }
 
     /*public Cliente buscaClienteByDni(Connection con) throws SQLException{
@@ -70,9 +70,9 @@ public class BasicData {
         cli = cliDao.buscaClienteByDni(this.getDni());
         return cli;
     }*/
-    public void modificaCliente(Connection con) throws SQLException {
-        BasicDataDAO cliDao = new BasicDataDAO(con, this);
-        cliDao.actualiza();
+    public void modificaBasicData(Connection con) throws SQLException {
+        BasicDataDAO bdDao = new BasicDataDAO(con, this);
+        bdDao.actualizaBasicData();
     }
 
     public String getLanguage() {

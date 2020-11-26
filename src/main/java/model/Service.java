@@ -5,16 +5,50 @@
  */
 package model;
 
+import DAO.BasicDataDAO;
+import DAO.MediaDAO;
+import DAO.ServiceDAO;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
 public class Service {
     private BasicData basicData;
     private Multimedia multimedia;
+    private int idService = 1;
 
     public Service(BasicData basicData, Multimedia multimedia) {
         this.basicData = basicData;
         this.multimedia = multimedia;
+    }
+    
+    public void insertaBasicDataBBDD(Connection con, BasicData basicData) throws SQLException, Exception {
+        ServiceDAO servDao = new ServiceDAO(con, this);
+        servDao.insertarBasicData();
+    }
+    
+    public boolean comprobarBasicDataBBDD(Connection con, BasicData basicData) throws SQLException, Exception {
+        ServiceDAO servDao = new ServiceDAO(con, this);
+        return servDao.compruebaBasicData(basicData);
+    }
+    
+    public void insertaMultimediaBBDD(Connection con, Multimedia multimedia) throws SQLException, Exception {
+        ServiceDAO servDao = new ServiceDAO(con, this);
+        servDao.insertarMultimedia();
+    }
+    
+    public boolean comprobarMultimediaBBDD(Connection con, Multimedia multimedia) throws SQLException, Exception {
+        ServiceDAO servDao = new ServiceDAO(con, this);
+        return servDao.compruebaMultimedia(multimedia);
+    }
+
+    public int getIdService() {
+        return idService;
+    }
+
+    public void setIdService(int idService) {
+        this.idService = idService;
     }
 
     public BasicData getBasicData() {
