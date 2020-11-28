@@ -13,6 +13,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 import model.BasicData;
+import model.Media;
+import model.Multimedia;
 import model.Service;
 import model.ServiceList;
 import org.xml.sax.SAXException;
@@ -44,18 +46,26 @@ public class App {
         Connection con = conexion_DB.abrirConexion();
         System.out.println("Conexión abierta");
         
+        /*BasicData basicData = new BasicData("es", " + 34 910 88 33 33", "http://www.esmadrid.com/alojamientos/four-seasons-hotel-madrid");
+        Media media = new Media("URL");
+        media.insertaMediaBBDD(con,basicData);*/
+        
+        
+        
         for (int i = 0; i < svc.getServiceList().getService().size(); i++) {
             service = svc.getServiceList().get(i);
             
             if (!service.comprobarBasicDataBBDD(con, service.getBasicData())) {
                 ServiceDAO serviceDao = new ServiceDAO(con, service);
                 serviceDao.insertarBasicData();
+                for (int j = 0; j <svc.getServiceList().get(i).getMultimedia().getMedia().size(); j++) {
+                    Media mediaTemp = svc.getServiceList().get(i).getMultimedia().getMedia().get(j);
+                    mediaTemp.insertaMediaBBDD(con, service.getBasicData());
+                }
             }
             
-            /*if (!service.comprobarMultimediaBBDD(con, service.getMultimedia())) {
-                ServiceDAO serviceDao = new ServiceDAO(con, service);
-                serviceDao.insertarMultimedia();
-            }*/
+            
+          
         }
         
         

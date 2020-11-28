@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import model.BasicData;
 import model.Media;
+import model.Multimedia;
+import model.Service;
 
 /**
  *
@@ -29,16 +32,13 @@ public class MediaDAO {
         this.con = con;
     }
 
-    public int insertaMedia() throws Exception {
+    public int insertaMedia(BasicData basicData) throws Exception {
+        int idBasicData = obtenerIdBasicData(basicData);
         PreparedStatement stmt = null;
-
         try {
-
-            stmt = con.prepareStatement("INSERT INTO media (url, type)"
-                    + "VALUES (?,?);");
-            stmt.setString(1, media.getUrl());
-            stmt.setString(2, media.getType());
-            
+            stmt = con.prepareStatement("INSERT INTO media (idBasicData, url)" + "VALUES (?,?);");
+            stmt.setInt(1, idBasicData);
+            stmt.setString(2, media.getUrl());  
             return stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -53,9 +53,8 @@ public class MediaDAO {
     public int actualizaMedia() throws SQLException {
         PreparedStatement stmt = null;
 
-        stmt = con.prepareStatement("UPDATE media SET url=?, type=?");
+        stmt = con.prepareStatement("UPDATE media SET url=?");
         stmt.setString(1, media.getUrl());
-        stmt.setString(2, media.getType());
        
         return stmt.executeUpdate();
 
@@ -116,6 +115,26 @@ public class MediaDAO {
             }
         }
 
+    }
+    
+    public int obtenerIdBasicData(BasicData basicData) throws SQLException, Exception {        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.prepareStatement("SELECT * FROM basicdata WHERE phone=?");       
+            stmt.setString(1, basicData.getPhone());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("idBasicData");
+            }
+            return 0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new Exception("Ha habido un problema al buscar el BasicData");
+        }finally{
+            if (stmt != null) stmt.close();
+        }
+        
     }
 }
 

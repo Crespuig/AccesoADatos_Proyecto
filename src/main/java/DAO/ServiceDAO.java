@@ -40,12 +40,11 @@ public class ServiceDAO {
     
     public void insertarBasicData() throws SQLException, Exception {
         PreparedStatement stmt = null;
-        stmt = con.prepareStatement("INSERT INTO basicdata (language, phone, web, idService) VALUES(?,?,?,?)");
+        stmt = con.prepareStatement("INSERT INTO basicdata (language, phone, web) VALUES(?,?,?)");
         try {
             stmt.setString(1, service.getBasicData().getLanguage());
             stmt.setString(2, service.getBasicData().getPhone());
             stmt.setString(3, service.getBasicData().getWeb());
-            stmt.setInt(4, service.getIdService());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -81,12 +80,12 @@ public class ServiceDAO {
 
     }
     
-    public void insertarMultimedia() throws SQLException, Exception {
+    /*public void insertarMultimedia() throws SQLException, Exception {
         PreparedStatement stmt = null;
         stmt = con.prepareStatement("INSERT INTO multimedia (media, idService) VALUES(?,?)");
         try {
-            stmt.setString(1, service.getMultimedia().getMedia().toString());
-            stmt.setInt(4, service.getIdService());
+            stmt.setString(1, service.getMultimedia());
+            stmt.setInt(2, service.getIdService());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -103,8 +102,8 @@ public class ServiceDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            stmt = con.prepareStatement("SELECT * FROM multimedia WHERE media=?");
-            stmt.setString(1, multimedia.getMedia().toString());
+            stmt = con.prepareStatement("SELECT * FROM multimedia WHERE url=?");
+            stmt.setString(1, multimedia.toString());
             rs = stmt.executeQuery();
             if (rs.next()) {
                 return true;
@@ -119,7 +118,7 @@ public class ServiceDAO {
             }
         }
 
-    }
+    }*/
 
     public Connection getCon() {
         return con;

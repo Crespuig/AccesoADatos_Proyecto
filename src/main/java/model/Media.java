@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class Media {
     private String url;
     private String type;
-    private int idMedia;
+    private int idMedia;    
 
     public Media() {
         
@@ -25,31 +25,19 @@ public class Media {
     public Media(String url) {
         this.url = url;
     }
+
+    Media(Connection con, Multimedia aThis) {
+        
+    }
     
-    public int insertaMediaBBDD(Connection con) throws SQLException, Exception {
+    public void insertaMediaBBDD(Connection con, BasicData basicData) throws SQLException, Exception {
         MediaDAO mediaDao = new MediaDAO(con, this);
-        return mediaDao.insertaMedia();
+        mediaDao.insertaMedia(basicData);
     }
-
-    public int eliminarMediaBBDD(Connection con) throws SQLException, Exception {
+    
+    public int obtenerIdBasicDataBBDD(Connection con, BasicData basicData) throws SQLException, Exception {
         MediaDAO mediaDao = new MediaDAO(con, this);
-        return mediaDao.eliminaMedia();
-    }
-
-    public int actualizarMediaBBDD(Connection con) throws SQLException, Exception {
-        MediaDAO mediaDao = new MediaDAO(con, this);
-        return mediaDao.actualizaMedia();
-    }
-
-    /*public Cliente buscaClienteByDni(Connection con) throws SQLException{
-        ClienteDAO cliDao = new ClienteDAO(con, this);
-        Cliente cli;
-        cli = cliDao.buscaClienteByDni(this.getDni());
-        return cli;
-    }*/
-    public void modificaMedia(Connection con) throws SQLException {
-        MediaDAO mediaDao = new MediaDAO(con, this);
-        mediaDao.actualizaMedia();
+       return  mediaDao.obtenerIdBasicData(basicData);
     }
 
     public int getIdMedia() {

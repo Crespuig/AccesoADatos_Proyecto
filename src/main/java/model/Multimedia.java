@@ -5,7 +5,6 @@
  */
 package model;
 
-import DAO.ServiceDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -30,14 +29,9 @@ public class Multimedia {
         
     }
     
-    /*public void insertaMediaBBDD(Connection con, ArrayList<Media> media) throws SQLException, Exception {
-        Media media = new Media(con, this);
-        media.insertaMediaBBDD(con, media);
-    }
-    
-    public boolean comprobarMediaBBDD(Connection con, Multimedia multimedia) throws SQLException, Exception {
-        ServiceDAO servDao = new ServiceDAO(con, this);
-        return servDao.compruebaMultimedia(multimedia);
+    /*public int insertaMediaBBDD(Connection con) throws SQLException, Exception {
+        Media bdDao = new Media(con, this);
+        return bdDao.insertaMediaBBDD(con);
     }*/
 
     public ArrayList<Media> getMedia() {

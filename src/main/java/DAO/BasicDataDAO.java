@@ -34,7 +34,7 @@ public class BasicDataDAO {
         try {
 
             stmt = con.prepareStatement("INSERT INTO basicdata (language, phone, web)"
-                    + "VALUES (?,?,?,?,?,?,?,?);");
+                    + "VALUES (?,?,?);");
             stmt.setString(1, basicData.getLanguage());
             stmt.setString(2, basicData.getPhone());
             stmt.setString(3, basicData.getWeb());

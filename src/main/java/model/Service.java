@@ -33,7 +33,7 @@ public class Service {
         return servDao.compruebaBasicData(basicData);
     }
     
-    public void insertaMultimediaBBDD(Connection con, Multimedia multimedia) throws SQLException, Exception {
+    /*public void insertaMultimediaBBDD(Connection con, Multimedia multimedia) throws SQLException, Exception {
         ServiceDAO servDao = new ServiceDAO(con, this);
         servDao.insertarMultimedia();
     }
@@ -41,7 +41,7 @@ public class Service {
     public boolean comprobarMultimediaBBDD(Connection con, Multimedia multimedia) throws SQLException, Exception {
         ServiceDAO servDao = new ServiceDAO(con, this);
         return servDao.compruebaMultimedia(multimedia);
-    }
+    }*/
 
     public int getIdService() {
         return idService;
